@@ -2,8 +2,6 @@
 #' @export
 Ops.lfactor <- function(e1,e2) {
   if(.Generic %in% c("<", "<=", ">=", ">")) {
-    #e10 <- e1
-    #e20 <- e2
     if(inherits(e1, "lfactor")) {
       e1 <- as.numeric(e1)
     }
