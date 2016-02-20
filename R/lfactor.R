@@ -60,7 +60,6 @@
 #' @export
 lfactor <- function(x, levels, labels=levels, ...) {
   if(! class(levels) %in% c("integer", "numeric") ) {
-    print(levels)
     stop(paste0("The ",sQuote("levels"), " argument must be of class integer or numeric."))
   }
   goodlabs <- rep(FALSE, length(labels)) 

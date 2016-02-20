@@ -4,9 +4,9 @@
   xo <- x
   class(xo) <- "factor"
   if(!missing(i)) {
-    res <- xo[i,...,drop=drop]
+    res <- xo[i,...,drop=FALSE]
   } else {
-    res <- xo[...,drop=drop]
+    res <- xo[...,drop=FALSE]
   }
   attr(res,"llevels") <- llevels(x)
   class(res) <- c("lfactor", "factor")

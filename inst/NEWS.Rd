@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{NEWS for lfactors}
 
+\section{Changes in version 0.6.0}{
+  \itemize{
+    \item Fixed a bug in 'droplevels' that would set some levels to NA. This was making lfactors not work well with lm when some levels were unoccupied.
+    \item GTE operator works with numeric comparison but still does not work with text comparison.
+  }
+}
+
 \section{Changes in version 0.5.3}{
   \itemize{
     \item Added 'droplevels' function that allows 'droplevels' to work on an lfactor.
