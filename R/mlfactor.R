@@ -23,7 +23,6 @@ mlfactor <- function(x, table, nomatch=NA_integer_, incomparables=NULL) {
   mm
 }
 
-setGeneric("match")
 setMethod("match", signature(x="lfactor"), mlfactor)
 setMethod("match", signature(table="lfactor"), mlfactor)
 setMethod("match", signature(x="lfactor", table="lfactor"), mlfactor) # prevents warning

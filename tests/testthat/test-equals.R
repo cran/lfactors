@@ -19,7 +19,7 @@ test_that("not equal", {
 
 context("in")
 test_that("in", {
-  skip_on_cran()
+  #skip_on_cran()
   expect_equal(mon %in% c(2, 3), mon %in% c("Feb", "Mar"))	
   expect_equal(c(-4, 14,3,10) %in% mon, c("not a month", "Third December","Mar","Oct") %in% mon)
 })
@@ -28,7 +28,12 @@ context("GT and GTE")
 test_that("GT and GTE", {
   expect_equal(mon >  3, c(rep(FALSE,3), rep(TRUE,9)))
   expect_equal(mon >= 3, c(rep(FALSE,2), rep(TRUE,10)))
-  expect_warning(mon >= "Jan")
+  expect_equal(3 < mon, c(rep(FALSE,3), rep(TRUE,9)))
+  expect_equal(3 <= mon, c(rep(FALSE,2), rep(TRUE,10)))
+  expect_equal(mon >  "Mar", c(rep(FALSE,3), rep(TRUE,9)))
+  expect_equal(mon >= "Mar", c(rep(FALSE,2), rep(TRUE,10)))
+  expect_equal("Mar" < mon, c(rep(FALSE,3), rep(TRUE,9)))
+  expect_equal("Mar" <= mon, c(rep(FALSE,2), rep(TRUE,10)))
 })
 
 context("droplevels")
@@ -79,6 +84,16 @@ test_that("set num", {
 
 })
 
+context("get num")
+test_that("get num", {
+  let <- lfactor(4:12,
+                 levels=4:12,
+                 labels=letters[4:12])
+  expect_equal(as.numeric(let), 4:12)  
+  expect_equal(as.double(let), 4:12)  
+  expect_equal(as.integer(let), 4:12)  
+})
+
 context("subset drop argument")
 test_that("subset drop argument", {
   expect_equal(levels(mon[1:4,drop=TRUE]), c("Jan", "Feb", "Mar", "Apr"))
@@ -89,4 +104,17 @@ context("subset with no i works")
 test_that("subset with no i works", {
   monb <- mon[1:11]
   expect_equal(mon[1:11,drop=TRUE], monb[,drop=TRUE])
+})
+
+
+context("lm with a dropped level")
+test_that("lm with a dropped level", {
+  data1 <- data.frame(y=1:100, x=seq(1:10), z=lfactor(rep(1:5,each=20),1:5,letters[1:5]))
+  data2 <- data.frame(y=1:100, x=seq(1:10), z=factor(rep(1:5,each=20),1:5,letters[1:5]))
+  lm1 <- lm(y ~ x+z, data1)
+  lm2 <- lm(y ~ x+z, data2)
+  all.equal(coef(summary(lm1)), coef(summary(lm2)))
+  lmp1 <- lm(y ~ x+z, subset(data1, z %in% letters[1:4]))
+  lmp2 <- lm(y ~ x+z, subset(data2, z %in% letters[1:4]))
+  all.equal(coef(summary(lmp1)), coef(summary(lmp2)))
 })

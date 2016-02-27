@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{NEWS for lfactors}
 
+\section{Changes in version 0.7.0}{
+  \itemize{
+    \item >= and <= now work with numeric or text inputs
+    \item fixed a bug so that as.numeric now returns the initial numeric levels 
+    \item calls to setGeneric moved to be exclusively in all.R
+    \item setMethods moved to the file where the function is defined
+    \item all tests can now be run on CRAN
+  }
+}
+
 \section{Changes in version 0.6.0}{
   \itemize{
     \item Fixed a bug in 'droplevels' that would set some levels to NA. This was making lfactors not work well with lm when some levels were unoccupied.

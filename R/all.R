@@ -3,3 +3,6 @@
 #' @import utils
 
 setOldClass("lfactor")
+setGeneric("match")
+setGeneric("%in%")
+

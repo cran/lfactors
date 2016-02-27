@@ -13,3 +13,8 @@ inlf <- function(x, table) {
   }
   ((m1 > 0) | (m2 > 0))
 }
+
+setMethod("%in%", signature(x="lfactor"), inlf)
+setMethod("%in%", signature(table="lfactor"), inlf)
+setMethod("%in%", signature(x="lfactor", table="lfactor"), inlf) 
+
