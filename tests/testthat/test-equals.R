@@ -1,3 +1,6 @@
+require(testthat)
+require(lfactors)
+
 mon <- lfactor(1:12,
                levels=1:12,
                labels=c("Jan", "Feb", "Mar", "Apr", "May","Jun",
@@ -19,7 +22,6 @@ test_that("not equal", {
 
 context("in")
 test_that("in", {
-  #skip_on_cran()
   expect_equal(mon %in% c(2, 3), mon %in% c("Feb", "Mar"))	
   expect_equal(c(-4, 14,3,10) %in% mon, c("not a month", "Third December","Mar","Oct") %in% mon)
 })
@@ -91,7 +93,8 @@ test_that("get num", {
                  labels=letters[4:12])
   expect_equal(as.numeric(let), 4:12)  
   expect_equal(as.double(let), 4:12)  
-  expect_equal(as.integer(let), 4:12)  
+  skip_on_cran()
+  expect_equal(as.integer(let), 1:9)
 })
 
 context("subset drop argument")
@@ -106,15 +109,47 @@ test_that("subset with no i works", {
   expect_equal(mon[1:11,drop=TRUE], monb[,drop=TRUE])
 })
 
-
 context("lm with a dropped level")
 test_that("lm with a dropped level", {
   data1 <- data.frame(y=1:100, x=seq(1:10), z=lfactor(rep(1:5,each=20),1:5,letters[1:5]))
   data2 <- data.frame(y=1:100, x=seq(1:10), z=factor(rep(1:5,each=20),1:5,letters[1:5]))
   lm1 <- lm(y ~ x+z, data1)
   lm2 <- lm(y ~ x+z, data2)
-  all.equal(coef(summary(lm1)), coef(summary(lm2)))
+  expect_equal(coef(summary(lm1)), coef(summary(lm2)))
   lmp1 <- lm(y ~ x+z, subset(data1, z %in% letters[1:4]))
   lmp2 <- lm(y ~ x+z, subset(data2, z %in% letters[1:4]))
-  all.equal(coef(summary(lmp1)), coef(summary(lmp2)))
+  expect_equal(coef(summary(lmp1)), coef(summary(lmp2)))
 })
+
+
+context("sparse.model.matrix with dropped levels")
+test_that("lm with a dropped level", {
+  skip_on_cran()
+  if(!exists("sparse.model.matrix")) {
+    skip("Matrix package not loaded")
+  }
+  df0 <- data.frame(a=1:20, b=lfactor(sample(2:4, 20, replace=TRUE), 1:5, letters[1:5]))
+  df0$d <- droplevels(df0$b)
+  X1 <- model.matrix(a ~ b, df0)
+  X1p <- sparse.model.matrix(a ~ b, df0)
+  attributes(X1) <- NULL
+  X1p <- as.matrix(X1p)
+  attributes(X1p) <- NULL
+  expect_equal(X1, X1p)
+
+  X2 <- model.matrix(a ~ d, df0)
+  X2p <- sparse.model.matrix(a ~ d, df0)
+  attributes(X2) <- NULL
+  X2p <- as.matrix(X2p)
+  attributes(X2p) <- NULL
+  expect_equal(X2, X2p)
+
+  df0$b <- relevel(df0$b, "c")
+  X3 <- model.matrix(a ~ b, df0)
+  X3p <- sparse.model.matrix(a ~ b, df0)
+  attributes(X3) <- NULL
+  X3p <- as.matrix(X3p)
+  attributes(X3p) <- NULL
+  expect_equal(X3, X3p)
+})
+
