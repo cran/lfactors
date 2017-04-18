@@ -1,4 +1,4 @@
-8d22a0905b47957cf0d383a5f80bd143 *DESCRIPTION
+f189c983bfbab63da2de1a609f66339b *DESCRIPTION
 93c2b7074680f19369d6be7152495b7f *NAMESPACE
 be6e90c378e4a2e44400eee9bcf98a0d *R/Ops.lfactor.R
 3160d24b106cc183353de9bb6381e9ac *R/all.R
@@ -9,7 +9,7 @@ c2d3fb2427b2ad39fbf0b58e647f59c1 *R/as.double.lfactor.R
 c5a6ac8395b4d844f9fd47c27cb85e12 *R/assign.R
 e783b6fd6cba3ea16131d71a44c2aafa *R/droplevels.R
 2d1cfd98c277192e4ae89a3f1cfdd266 *R/inlf.R
-881385c431afbbf3d52b43fcf248ffe6 *R/lfactor.R
+393dfb3ae885a5a5f1850cceef6126e0 *R/lfactor.R
 2364742367138ea8815d0561c61dd18b *R/lfactors-package.R
 cfe4657c14acc33c6602ab7ff7f4bba6 *R/llevels.R
 6dd49f33f5e943c95345313fdc7fa617 *R/mlfactor.R
@@ -18,7 +18,7 @@ efbc277c460f7f5ccbcb25106038ef60 *R/relevel.R
 f8b43d6770bf9aea37c70a596dda3897 *R/subset.R
 d071fd01a2f24b614e18edb7aabec8bf *R/switchllevels.R
 817c9dfb2e32b0a35c2fca203f9427f1 *R/zzz.R
-2967889286323e6e868c82ca577eb372 *inst/NEWS.Rd
+f7bc6e12330aed8a971c114bd545ff53 *inst/NEWS.Rd
 7319109da3af422604a82a62deef100c *man/as.factor.lfactor.Rd
 ba47bc423fe429dd1b2b546290b6835a *man/as.integer.lfactor.Rd
 604507c926fee6395f43fe246361f8f3 *man/as.numeric.lfactor.Rd
@@ -30,4 +30,4 @@ c74444d7e9b4c26045ff91660a6c54d8 *man/examples/lfactor.R
 11281402960d1a15825b00d9020837d2 *man/llevels.Rd
 9bcd611b4aa186a1b25437191390c850 *man/mlfactor.Rd
 4f2745558b3725b2303b0f715162ddce *tests/testthat.R
-5fabd80b939661e1077020590109d988 *tests/testthat/test-equals.R
+77926ad4f3cefe6c8b3787457a551cd7 *tests/testthat/test-equals.R

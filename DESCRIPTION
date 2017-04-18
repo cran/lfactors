@@ -1,6 +1,6 @@
 Package: lfactors
-Version: 1.0.0
-Date: 2016-12-09
+Version: 1.0.1
+Date: 2017-04-18
 Title: Factors with Levels
 Authors@R: c(person("Paul", "Bailey", role=c("aut", "cre"), email="pbailey@air.org"))
 Author: Paul Bailey [aut, cre]
@@ -14,6 +14,6 @@ Description: Provides an extension to factors called 'lfactor' that are similar
 License: GPL-2
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2016-12-16 20:57:51 UTC; pbailey
+Packaged: 2017-04-18 19:15:39 UTC; pbailey
 Repository: CRAN
-Date/Publication: 2016-12-16 22:56:54
+Date/Publication: 2017-04-18 23:21:57 UTC
