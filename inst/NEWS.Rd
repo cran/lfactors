@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{NEWS for lfactors}
 
+\section{Changes in version 1.0.4}{
+  \itemize{
+    \item Fix bug in droplevels when an NA is present
+    \item Fix bug in \%in\% when lfactor has an NA value
+  }
+}
+
 \section{Changes in version 1.0.1}{
   \itemize{
     \item Fix creating of an lfactor with labels.
